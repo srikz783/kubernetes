@@ -1,0 +1,25 @@
+---
+apiVersion: v1
+metadata:
+  name: jenkins-pod
+kind: Pod
+spec:
+  containers:
+    - name: jenkins
+      image: jenkins/jenkins:jdk11
+      ports:
+        - containerPort: 8080
+          protocol: TCP
+          name: http
+      livenessProbe:
+        - httpGet: 
+            port: 80
+            path: /
+            scheme: HTTP
+      resources:
+        requests:
+          memory: "128Mi"
+          cpu: "500m"
+        limits:
+          memory: "512Mi"
+          cpu: "1000m"
