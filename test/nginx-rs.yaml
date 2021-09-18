@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
@@ -5,10 +6,13 @@ metadata:
 spec:
   minReadySeconds: 5
   replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
   template:
     metadata:
       labels:
-        app: "nginx"
+        app: nginx
         verison: "1.21.1"
     spec:
       containers:
@@ -20,9 +24,9 @@ spec:
               name: http
           livenessProbe:
             httpGet: 
-            port: 80
-            path: /
-            scheme: HTTP
+              port: 80
+              path: /
+              scheme: HTTP
           resources:
             requests:
               memory: "128Mi"
