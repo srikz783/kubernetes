@@ -12,10 +12,10 @@ spec:
           protocol: TCP
           name: http
       livenessProbe:
-        - httpGet: 
-            port: 80
-            path: /
-            scheme: HTTP
+        httpGet: 
+          port: 80
+          path: /
+          scheme: HTTP
       resources:
         requests:
           memory: "128Mi"
